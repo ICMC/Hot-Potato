@@ -27,7 +27,6 @@ public class DisplayWords extends AppCompatActivity implements GestureDetector.O
 
 
 
-
     final Vector<String> dictionary = new Vector<String>();
     final Vector<String> Scored =  new Vector<String>();
 
@@ -68,7 +67,10 @@ public class DisplayWords extends AppCompatActivity implements GestureDetector.O
 
 
         Intent intent =getIntent();
-
+        // Instantiate the gesture detector with the
+        // application context and an implementation of
+        // GestureDetector.OnGestureListener
+        mDetector = new GestureDetectorCompat(this,this);
 
         final ArrayList<String> dictionary = intent.getStringArrayListExtra("wordlist");
         final TextView text = (TextView)findViewById(R.id.word);
@@ -171,62 +173,7 @@ public class DisplayWords extends AppCompatActivity implements GestureDetector.O
         new CountDownTimer(70000, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                if(millisUntilFinished <= 65000){
-                    View background = findViewById(R.id.space1);
-                    background.setBackgroundColor(WHITE);
-                }
-                if(millisUntilFinished <= 60000){
-                    View background = findViewById(R.id.space2);
-                    background.setBackgroundColor(WHITE);
-                }
-                if(millisUntilFinished <= 55000){
-                    View background = findViewById(R.id.space3);
-                    background.setBackgroundColor(WHITE);
-                }
-                if(millisUntilFinished <= 50000){
-                    View background = findViewById(R.id.space4);
-                    background.setBackgroundColor(WHITE);
-                }
-                if(millisUntilFinished <= 45000){
-                    View background = findViewById(R.id.space5);
-                    background.setBackgroundColor(WHITE);
-                }
-                if(millisUntilFinished <= 40000){
-                    View background = findViewById(R.id.space6);
-                    background.setBackgroundColor(WHITE);
-                }
-                if(millisUntilFinished <= 35000){
-                    View background = findViewById(R.id.space7);
-                    background.setBackgroundColor(WHITE);
-                }
-                if(millisUntilFinished <= 30000){
-                    View background = findViewById(R.id.space8);
-                    background.setBackgroundColor(WHITE);
-                }
-                if(millisUntilFinished <= 25000){
-                    View background = findViewById(R.id.space9);
-                    background.setBackgroundColor(WHITE);
-                }
-                if(millisUntilFinished <= 20000){
-                    View background = findViewById(R.id.space10);
-                    background.setBackgroundColor(WHITE);
-                }
-                if(millisUntilFinished <= 15000){
-                    View background = findViewById(R.id.space11);
-                    background.setBackgroundColor(WHITE);
-                }
-                if(millisUntilFinished <= 10000){
-                    View background = findViewById(R.id.space12);
-                    background.setBackgroundColor(WHITE);
-                }
-                if(millisUntilFinished <= 5000){
-                    View background = findViewById(R.id.space13);
-                    background.setBackgroundColor(WHITE);
-                }
-                if(millisUntilFinished <= 500){
-                    View background = findViewById(R.id.space14);
-                    background.setBackgroundColor(WHITE);
-                }
+
             }
 
             public void onFinish(){
@@ -238,6 +185,11 @@ public class DisplayWords extends AppCompatActivity implements GestureDetector.O
 
     }
 
+    public boolean onTouchEvent(MotionEvent event){
+        this.mDetector.onTouchEvent(event);
+        // Be sure to call the superclass implementation
+        return super.onTouchEvent(event);
+    }
 
     @Override
     public boolean onDown(MotionEvent e) {
